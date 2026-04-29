@@ -31,11 +31,6 @@
       "o": "premio:1910"
     },
     {
-      "s": "persona:Antonio",
-      "p": "nace_en",
-      "o": "lugar:Villarrubia de los Caballeros"
-    },
-    {
       "s": "persona:Albert Einstein",
       "p": "conoce",
       "o": "persona:Marie Curie"

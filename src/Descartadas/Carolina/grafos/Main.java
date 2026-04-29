@@ -13,29 +13,16 @@ public class Main { //main del programa de grafos
 
     public static void main(String[] args) {
 
-        // 1. cargar json
-        ListSE<Tripleta> datos =
-                ArchivosJson.cargar("datos.json"); //lee el archivo y saca las tripletas
+        // 1. Cargar JSON
+        ListSE<Tripleta> datos = ArchivosJson.cargar("datos.json");
 
-        // 2. construir grafo
-        Grafo g = new Grafo(); //crea el grafo vacío
-        g.cargarDesdeTripletas(datos); //mete los datos en el grafo
+        // 2. Construir grafo
+        Grafo g = new Grafo();
+        g.cargarDesdeTripletas(datos);
 
-        // 3. mostrar grafo
-        System.out.println("===== GRAFO =====");
-
-        for (int i = 0; i < g.nodos.getSize(); i++) { //recorre todos los nodos del grafo
-
-            Nodo n = g.nodos.get(i); //nodo actual
-
-            System.out.print(n.nombre + " -> "); //imprime el nodo
-
-            for (int j = 0; j < n.aristas.getSize(); j++) { //recorre sus conexiones
-                System.out.print(n.aristas.get(j).destino.nombre + " "); //imprime destinos
-            }
-
-            System.out.println(); //salto de línea
-        }
+        // 3. Mostrar grafo en formato árbol
+        System.out.println("===== GRAFO (FORMATO ÁRBOL) =====\n");
+        g.imprimirComoArbol();
 
         // =====================================================
         // camino mínimo

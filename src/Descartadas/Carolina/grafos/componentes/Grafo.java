@@ -61,4 +61,40 @@ public class Grafo { //estructura principal del grafo
             agregarTripleta(t.s, t.p, t.o); //la añade al grafo
         }
     }
+
+    public void imprimirComoArbol() {
+        for (int i = 0; i < nodos.getSize(); i++) {
+            Nodo n = nodos.get(i);
+
+            // Solo imprimimos como raíz si es un "sujeto" (tiene aristas)
+            if (n.aristas.getSize() > 0) {
+                imprimirNodoComoArbol(n, "");
+                System.out.println();
+            }
+        }
+    }
+
+    private void imprimirNodoComoArbol(Nodo nodo, String prefijo) {
+
+        System.out.println(prefijo + nodo.nombre);
+
+        int total = nodo.aristas.getSize();
+
+        for (int i = 0; i < total; i++) {
+            Arista a = nodo.aristas.get(i);
+
+            boolean esUltima = (i == total - 1);
+
+            String conector = esUltima ? "└── " : "├── ";
+            String nuevoPrefijo = prefijo + (esUltima ? "    " : "│   ");
+
+            System.out.println(prefijo + conector + a.etiqueta + " → " + a.destino.nombre);
+
+            // Si el destino también tiene aristas, lo imprimimos recursivamente
+            if (a.destino.aristas.getSize() > 0) {
+                imprimirNodoComoArbol(a.destino, nuevoPrefijo);
+            }
+        }
+    }
+
 }
