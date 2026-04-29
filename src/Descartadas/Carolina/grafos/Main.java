@@ -1,47 +1,88 @@
 package Descartadas.Carolina.grafos;
 
 import Descartadas.Carolina.estructuras_necesarias.ListSE;
-import Descartadas.Carolina.grafos.algoritmos.BFS;
-import Descartadas.Carolina.grafos.algoritmos.ComponentesConexas;
-import Descartadas.Carolina.grafos.componentes_grafos.GrafoRDF;
-import Descartadas.Carolina.grafos.componentes_grafos.Tripleta;
+import Descartadas.Carolina.grafos.componentes.Grafo;
+import Descartadas.Carolina.grafos.componentes.Nodo;
+import Descartadas.Carolina.grafos.ejercicios.CaminoMinimo.CaminoMinimo;
+import Descartadas.Carolina.grafos.ejercicios.ConsultasNobel.ConsultasNobel;
+import Descartadas.Carolina.grafos.ejercicios.GrafoDisjunto.GrafoDisjunto;
 import Descartadas.Carolina.grafos.json.ArchivosJson;
+import Descartadas.Carolina.grafos.json.Tripleta;
 
-public class Main {
+public class Main { //main del programa de grafos
 
     public static void main(String[] args) {
 
-        ListSE<Tripleta> tripletas = ArchivosJson.cargar("datos.json");
+        // 1. cargar json
+        ListSE<Tripleta> datos =
+                ArchivosJson.cargar("datos.json"); //lee el archivo y saca las tripletas
 
-        GrafoRDF grafo = new GrafoRDF();
-        grafo.cargarTripletas(tripletas);
+        // 2. construir grafo
+        Grafo g = new Grafo(); //crea el grafo vacío
+        g.cargarDesdeTripletas(datos); //mete los datos en el grafo
 
-        System.out.println("Lugar de nacimiento de Einstein:");
-        System.out.println(grafo.lugarNacimiento("persona:Albert Einstein"));
+        // 3. mostrar grafo
+        System.out.println("===== GRAFO =====");
 
-        System.out.println("\nCamino mínimo entre Einstein y Ulm:");
-        System.out.println(
-                BFS.caminoMinimo(
-                        grafo,
-                        "persona:Albert Einstein",
-                        "lugar:Ulm"
-                )
-        );
+        for (int i = 0; i < g.nodos.getSize(); i++) { //recorre todos los nodos del grafo
 
-        ListSE<String> nodos = new ListSE<>();
-        nodos.addLast("persona:Albert Einstein");
-        nodos.addLast("lugar:Ulm");
-        nodos.addLast("persona:Marie Curie");
-        nodos.addLast("lugar:Varsovia");
+            Nodo n = g.nodos.get(i); //nodo actual
 
-        System.out.println("\n¿El grafo es disjunto?");
-        System.out.println(
-                ComponentesConexas.esDisjunto(grafo, nodos)
-        );
+            System.out.print(n.nombre + " -> "); //imprime el nodo
 
-        System.out.println("\nPersona nacida en el mismo lugar que Einstein:");
-        System.out.println(
-                grafo.mismoLugarQueEinstein()
-        );
+            for (int j = 0; j < n.aristas.getSize(); j++) { //recorre sus conexiones
+                System.out.print(n.aristas.get(j).destino.nombre + " "); //imprime destinos
+            }
+
+            System.out.println(); //salto de línea
+        }
+
+        // =====================================================
+        // camino mínimo
+        // =====================================================
+        System.out.println("\n===== CAMINO MÍNIMO =====");
+
+        ListSE<Nodo> camino =
+                CaminoMinimo.obtenerCamino(g, "persona:Albert Einstein", "persona:Marie Curie"); //busca camino
+
+        for (int i = 0; i < camino.getSize(); i++) { //imprime el camino
+            System.out.print(camino.get(i).nombre);
+
+            if (i < camino.getSize() - 1) System.out.print(" -> "); //separador
+        }
+
+        // =====================================================
+        // componentes conexas
+        // =====================================================
+        System.out.println("\n\n===== COMPONENTES CONEXAS =====");
+
+        int componentes = GrafoDisjunto.contarComponentes(g); //calcula componentes
+
+        System.out.println("Número de componentes: " + componentes); //lo muestra
+
+        // =====================================================
+        // consulta nobel
+        // =====================================================
+        System.out.println("\n===== CONSULTA NOBEL =====");
+
+        ListSE<String> resultado =
+                ConsultasNobel.fisicosMismaCiudadQueEinstein(g); //consulta principal
+
+        if (resultado.getSize() == 0) { //si no hay resultados
+            System.out.println("No hay resultados");
+        } else {
+            for (int i = 0; i < resultado.getSize(); i++) { //imprime resultados
+                System.out.println(resultado.get(i));
+            }
+        }
+
+        System.out.println("\n===== LUGARES NACIMIENTO NOBEL =====");
+
+        ListSE<String> lugares =
+                ConsultasNobel.lugaresNacimientoNobel(g); //segunda consulta
+
+        for (int i = 0; i < lugares.getSize(); i++) { //imprime lista
+            System.out.println(lugares.get(i));
+        }
     }
 }
