@@ -17,7 +17,7 @@ public class ArchivosJson { //clase para cargar datos desde un json
 
         try { //bloque para evitar errores al leer archivo
 
-            Gson gson = new Gson(); //crea el parser de json
+            Gson gson = new Gson();
 
             ContenedorTripletas data =
                     gson.fromJson(new FileReader(ruta), ContenedorTripletas.class); //lee el json y lo convierte
