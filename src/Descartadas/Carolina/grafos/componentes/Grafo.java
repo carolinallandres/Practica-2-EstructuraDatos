@@ -62,39 +62,40 @@ public class Grafo { //estructura principal del grafo
         }
     }
 
-    public void imprimirComoArbol() {
-        for (int i = 0; i < nodos.getSize(); i++) {
-            Nodo n = nodos.get(i);
+    public void imprimirComoArbol() { //imprime el grafo con forma de árbol
 
-            // Solo imprimimos como raíz si es un "sujeto" (tiene aristas)
-            if (n.aristas.getSize() > 0) {
-                imprimirNodoComoArbol(n, "");
-                System.out.println();
+        for (int i = 0; i < nodos.getSize(); i++) { //recorre todos los nodos del grafo
+
+            Nodo n = nodos.get(i); //nodo actual
+
+            if (n.aristas.getSize() > 0) { //si tiene conexiones
+
+                imprimirNodoComoArbol(n, ""); //empieza a imprimir desde ese nodo
+                System.out.println(); //salto de línea entre árboles
             }
         }
     }
 
-    private void imprimirNodoComoArbol(Nodo nodo, String prefijo) {
+    private void imprimirNodoComoArbol(Nodo nodo, String prefijo) { //imprime un nodo y sus conexiones en forma de árbol
 
-        System.out.println(prefijo + nodo.nombre);
+        System.out.println(prefijo + nodo.nombre); //imprime el nodo actual con su prefijo
 
-        int total = nodo.aristas.getSize();
+        int total = nodo.aristas.getSize(); //número de conexiones del nodo
 
-        for (int i = 0; i < total; i++) {
-            Arista a = nodo.aristas.get(i);
+        for (int i = 0; i < total; i++) { //recorre todas las aristas del nodo
 
-            boolean esUltima = (i == total - 1);
+            Arista a = nodo.aristas.get(i); //arista actual
 
-            String conector = esUltima ? "└── " : "├── ";
-            String nuevoPrefijo = prefijo + (esUltima ? "    " : "│   ");
+            boolean esUltima = (i == total - 1); //comprueba si es la última conexión
 
-            System.out.println(prefijo + conector + a.etiqueta + " → " + a.destino.nombre);
+            String conector = esUltima ? "└── " : "├── "; //elige el símbolo de dibujo
+            String nuevoPrefijo = prefijo + (esUltima ? "    " : "│   "); //actualiza el prefijo para la siguiente profundidad
 
-            // Si el destino también tiene aristas, lo imprimimos recursivamente
-            if (a.destino.aristas.getSize() > 0) {
-                imprimirNodoComoArbol(a.destino, nuevoPrefijo);
+            System.out.println(prefijo + conector + a.etiqueta + " → " + a.destino.nombre); //imprime la conexión
+
+            if (a.destino.aristas.getSize() > 0) { //si el nodo destino tiene más conexiones
+                imprimirNodoComoArbol(a.destino, nuevoPrefijo); //recursión para seguir bajando
             }
         }
     }
-
 }
