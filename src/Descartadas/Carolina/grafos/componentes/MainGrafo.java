@@ -26,9 +26,9 @@ public class MainGrafo { //main de prueba del grafo básico
         //tripletas
         System.out.println("----- Tripletas en formato RDF -----");
 
-        for (int i = 0; i < g.tripletas.getSize(); i++) { //recorre tripletas
+        for (int i = 0; i < g.tripletas.getSize(); i++) {
 
-            Tripleta t = g.tripletas.get(i); //tripleta actual
+            Tripleta t = g.tripletas.get(i);
 
             System.out.println( //imprime formato rdf
                     "<" + t.s + "> " +
@@ -41,7 +41,7 @@ public class MainGrafo { //main de prueba del grafo básico
         //buscar nodo
         System.out.println("\n----- Buscar un nodo -----");
 
-        Nodo buscado = g.buscarNodo("persona:Albert Einstein"); // buscar nodo dentro del grafo cargado
+        Nodo buscado = g.buscarNodo("persona:Albert Einstein");
 
         if (buscado != null) {
 

@@ -31,46 +31,50 @@ public class Main { //main del programa de grafos
         //metodo del camino mínimo
         System.out.println("----- Camino mínimo -----");
 
-        CaminoMinimo cm = new CaminoMinimo(g); // creas el objeto con el grafo
+        CaminoMinimo cm = new CaminoMinimo(g);
 
-        ListSE<Nodo> camino = cm.obtenerCamino("persona:Albert Einstein", "persona:Marie Curie"); // busca camino
+        ListSE<Nodo> camino = cm.obtenerCamino("persona:Albert Einstein", "persona:Marie Curie");
 
-        for (int i = 0; i < camino.getSize(); i++) { // imprime el camino
+        for (int i = 0; i < camino.getSize(); i++) {
             System.out.print(camino.get(i).nombre);
 
-            if (i < camino.getSize() - 1) System.out.print(" -> "); // separador
+            if (i < camino.getSize() - 1) System.out.print(" -> ");
         }
 
 
-        //metodo componentes conexas
+        // metodo componentes conexas
         System.out.println("\n\n----- Componentes conexas -----");
 
-        int componentes = GrafoDisjunto.contarComponentes(g); //calcula componentes
+        GrafoDisjunto gd = new GrafoDisjunto(g);
 
-        System.out.println("Número de componentes: " + componentes); //lo muestra
+        int componentes = gd.contarComponentes();
+
+        System.out.println("Número de componentes: " + componentes);
 
 
-        //consultas sobre los premios nobel
+        // consultas sobre los premios nobel
         System.out.println("\n----- Premios Nobel -----");
+
+        ConsultasNobel cn = new ConsultasNobel(g);
 
         System.out.println("1.Mismo premio");
 
-        ListSE<String> resultado = ConsultasNobel.fisicosMismaCiudadQueEinstein(g); //
+        ListSE<String> resultado = cn.fisicosMismaCiudadQueEinstein();
 
-        if (resultado.getSize() == 0) { //si no hay resultados
+        if (resultado.getSize() == 0) {
             System.out.println("No hay resultados");
         }
         else {
-            for (int i = 0; i < resultado.getSize(); i++) { //imprime resultados
+            for (int i = 0; i < resultado.getSize(); i++) {
                 System.out.println(resultado.get(i));
             }
         }
 
         System.out.println("2.Lugares de nacimiento");
 
-        ListSE<String> lugares = ConsultasNobel.lugaresNacimientoNobel(g); //segunda consulta
+        ListSE<String> lugares = cn.lugaresNacimientoNobel();
 
-        for (int i = 0; i < lugares.getSize(); i++) { //imprime lista
+        for (int i = 0; i < lugares.getSize(); i++) {
             System.out.println(lugares.get(i));
         }
     }
