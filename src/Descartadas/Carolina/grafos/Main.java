@@ -13,20 +13,21 @@ public class Main { //main del programa de grafos
 
     public static void main(String[] args) {
 
-        // 1. Cargar JSON
+        //cargar JSON
         ListSE<Tripleta> datos = ArchivosJson.cargar("datos.json");
 
-        // 2. Construir grafo
+
+        //construir grafo
         Grafo g = new Grafo();
         g.cargarDesdeTripletas(datos);
 
-        // 3. Mostrar grafo en formato árbol
+
+        //mostrar grafo en formato árbol
         System.out.println("----- Representación del grafo -----");
         g.imprimirComoArbol();
 
-        // =====================================================
-        // camino mínimo
-        // =====================================================
+
+        //metodo del camino mínimo
         System.out.println("----- Camino mínimo -----");
 
         ListSE<Nodo> camino =
@@ -38,27 +39,26 @@ public class Main { //main del programa de grafos
             if (i < camino.getSize() - 1) System.out.print(" -> "); //separador
         }
 
-        // =====================================================
-        // componentes conexas
-        // =====================================================
+
+        //metodo componentes conexas
         System.out.println("\n\n----- Componentes conexas -----");
 
         int componentes = GrafoDisjunto.contarComponentes(g); //calcula componentes
 
         System.out.println("Número de componentes: " + componentes); //lo muestra
 
-        // =====================================================
-        // consulta nobel
-        // =====================================================
+
+        //consultas sobre los premios nobel
         System.out.println("\n----- Premios Nobel -----");
+
         System.out.println("1.Mismo premio");
 
-        ListSE<String> resultado =
-                ConsultasNobel.fisicosMismaCiudadQueEinstein(g); //consulta principal
+        ListSE<String> resultado = ConsultasNobel.fisicosMismaCiudadQueEinstein(g); //
 
         if (resultado.getSize() == 0) { //si no hay resultados
             System.out.println("No hay resultados");
-        } else {
+        }
+        else {
             for (int i = 0; i < resultado.getSize(); i++) { //imprime resultados
                 System.out.println(resultado.get(i));
             }
@@ -66,8 +66,7 @@ public class Main { //main del programa de grafos
 
         System.out.println("2.Lugares de nacimiento");
 
-        ListSE<String> lugares =
-                ConsultasNobel.lugaresNacimientoNobel(g); //segunda consulta
+        ListSE<String> lugares = ConsultasNobel.lugaresNacimientoNobel(g); //segunda consulta
 
         for (int i = 0; i < lugares.getSize(); i++) { //imprime lista
             System.out.println(lugares.get(i));

@@ -8,18 +8,21 @@ public class MainGrafo { //main de prueba del grafo básico
 
     public static void main(String[] args) {
 
-        // 1. Cargar JSON
+        //cargar JSON
         ListSE<Tripleta> datos = ArchivosJson.cargar("datos.json");
 
-        // 2. Construir grafo
+
+        //construir grafo
         Grafo g = new Grafo();
         g.cargarDesdeTripletas(datos);
 
-        // 3. Mostrar grafo en formato árbol
+
+        //mostrar grafo en formato árbol
         System.out.println("----- Representación del grafo -----");
         g.imprimirComoArbol();
 
-        // ===== tripletas (rdf real) =====
+
+        //tripletas
         System.out.println("----- Tripletas en formato RDF -----");
 
         for (int i = 0; i < g.tripletas.getSize(); i++) { //recorre tripletas
@@ -33,11 +36,11 @@ public class MainGrafo { //main de prueba del grafo básico
             );
         }
 
-        // ===== buscar nodo =====
+
+        //buscar nodo
         System.out.println("\n----- Buscar un nodo -----");
 
-        // buscar nodo dentro del grafo cargado
-        Nodo buscado = g.buscarNodo("persona:Albert Einstein");
+        Nodo buscado = g.buscarNodo("persona:Albert Einstein"); // buscar nodo dentro del grafo cargado
 
         if (buscado != null) {
 
@@ -54,7 +57,8 @@ public class MainGrafo { //main de prueba del grafo básico
                 );
             }
 
-        } else {
+        }
+        else {
             System.out.println("Nodo no encontrado");
         }
     }
