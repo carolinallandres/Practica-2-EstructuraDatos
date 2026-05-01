@@ -1,6 +1,6 @@
 package Descartadas.Álvaro.EstructurasP1;
 
-import Nodos.Listas.ElementS;
+import Descartadas.Álvaro.Nodos.Listas.ElementS;
 
 public class Stack<T>{
     private ElementS<T> head;

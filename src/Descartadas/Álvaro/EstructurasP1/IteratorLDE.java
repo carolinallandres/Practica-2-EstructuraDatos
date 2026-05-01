@@ -1,6 +1,6 @@
 package Descartadas.Álvaro.EstructurasP1;
 
-import Nodos.Listas.ElementD;
+import Descartadas.Álvaro.Nodos.Listas.ElementD;
 
 public class IteratorLDE<T extends Comparable<T>> implements MyIterator<T> {
     private ElementD<T> current;

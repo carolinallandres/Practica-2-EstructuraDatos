@@ -1,10 +1,10 @@
 package Descartadas.Álvaro.Grafos;
 
 import Descartadas.Álvaro.EstructurasP1.IndexedList;
-import EstructurasP1.Queue;
-import EstructurasP1.Stack;
-import Nodos.Grafos.EdgeGraph;
-import Nodos.Grafos.GraphNode;
+import Descartadas.Álvaro.EstructurasP1.Queue;
+import Descartadas.Álvaro.EstructurasP1.Stack;
+import Descartadas.Álvaro.Nodos.Grafos.EdgeGraph;
+import Descartadas.Álvaro.Nodos.Grafos.GraphNode;
 
 
 public class Graph<DN,DA>{
