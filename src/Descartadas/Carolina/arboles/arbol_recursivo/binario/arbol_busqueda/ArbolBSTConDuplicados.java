@@ -1,6 +1,6 @@
 package Descartadas.Carolina.arboles.arbol_recursivo.binario.arbol_busqueda;
 
-import Descartadas.Carolina.arboles.arbol_recursivo.binario.metodos_comunes.Profundidad;
+import Descartadas.Carolina.arboles.arbol_recursivo.binario.arbol_busqueda.ArbolBSTBase;
 import Descartadas.Carolina.arboles.arbol_recursivo.binario.nodo.NodoBinario;
 import Descartadas.Carolina.estructuras_necesarias.MyList;
 
@@ -13,13 +13,16 @@ public class ArbolBSTConDuplicados<T extends Comparable<T>> extends ArbolBSTBase
 
     private NodoBinario<T> insertarConDuplicados(NodoBinario<T> nodo, T data) { //inserción permitiendo duplicados
 
-        if (nodo == null) return new NodoBinario<>(data); //si el nodo es nulo, se crea uno nuevo
+        if (nodo == null) {  //si el nodo es nulo, se crea uno nuevo
+            return new NodoBinario<>(data);
+        }
 
         int cmp = data.compareTo(nodo.getData()); //compara el dato con el nodo actual
 
         if (cmp < 0) { //si es menor, va al subárbol izquierdo
             nodo.setLeft(insertarConDuplicados(nodo.getLeft(), data));
-        } else { //si es mayor o igual, va al subárbol derecho (incluye duplicados)
+        }
+        else { //si es mayor o igual, va al subárbol derecho (incluye duplicados)
             nodo.setRight(insertarConDuplicados(nodo.getRight(), data));
         }
 
@@ -33,13 +36,19 @@ public class ArbolBSTConDuplicados<T extends Comparable<T>> extends ArbolBSTBase
 
     private NodoBinario<T> buscarConDuplicados(NodoBinario<T> nodo, T data) { //búsqueda en BST con duplicados
 
-        if (nodo == null) return null; //si no existe el nodo, devuelve null
+        if (nodo == null) { //si no existe el nodo, devuelve null
+            return null;
+        }
 
         int cmp = data.compareTo(nodo.getData()); //compara el dato
 
-        if (cmp == 0) return nodo; //si coincide, devuelve el nodo
+        if (cmp == 0) { //si coincide, devuelve el nodo
+            return nodo;
+        }
 
-        if (cmp < 0) return buscarConDuplicados(nodo.getLeft(), data); //si es menor, busca a la izquierda
+        if (cmp < 0) { //si es menor, busca a la izquierda
+            return buscarConDuplicados(nodo.getLeft(), data);
+        }
 
         return buscarConDuplicados(nodo.getRight(), data); //si es mayor, busca a la derecha
     }
@@ -51,18 +60,26 @@ public class ArbolBSTConDuplicados<T extends Comparable<T>> extends ArbolBSTBase
 
     private NodoBinario<T> eliminarConDuplicados(NodoBinario<T> nodo, T data) { //eliminación en BST con duplicados
 
-        if (nodo == null) return null; //si no existe el nodo, no hace nada
+        if (nodo == null) { //si no existe el nodo, no hace nada
+            return null;
+        }
 
         int cmp = data.compareTo(nodo.getData()); //compara el dato
 
         if (cmp < 0) { //si es menor, busca en la izquierda
             nodo.setLeft(eliminarConDuplicados(nodo.getLeft(), data));
-        } else if (cmp > 0) { //si es mayor, busca en la derecha
+        }
+        else if (cmp > 0) { //si es mayor, busca en la derecha
             nodo.setRight(eliminarConDuplicados(nodo.getRight(), data));
-        } else { //si encuentra el nodo a eliminar
+        }
+        else { //si encuentra el nodo a eliminar
 
-            if (nodo.getLeft() == null) return nodo.getRight(); //caso: sin hijo izquierdo
-            if (nodo.getRight() == null) return nodo.getLeft(); //caso: sin hijo derecho
+            if (nodo.getLeft() == null) { //caso: sin hijo izquierdo
+                return nodo.getRight();
+            }
+            if (nodo.getRight() == null) { //caso: sin hijo derecho
+                return nodo.getLeft();
+            }
 
             NodoBinario<T> sucesor = obtenerMinimo(nodo.getRight()); //se busca el sucesor (mínimo del subárbol derecho)
 
@@ -79,19 +96,18 @@ public class ArbolBSTConDuplicados<T extends Comparable<T>> extends ArbolBSTBase
         return nodo; //devuelve el mínimo
     }
 
-    public int profundidadDe(T data) { //devuelve la profundidad de un nodo en el árbol
-        return new Profundidad<T>().calcularProfundidad(raiz, data); //CAMBIO: uso de clase Profundidad externa
-    }
 
     @Override
     public int getGrado() {
         return 0;
     }
 
+
     @Override
     public MyList<T> getListaDatosNivel(int nivel) {
         return null;
     }
+
 
     @Override
     public MyList<T> getCamino(T data) {

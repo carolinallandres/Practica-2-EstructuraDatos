@@ -1,6 +1,8 @@
 package Descartadas.Carolina.grafos.componentes;
 
 import Descartadas.Carolina.estructuras_necesarias.ListSE;
+import Descartadas.Carolina.grafos.componentes.Arista;
+import Descartadas.Carolina.grafos.componentes.Nodo;
 import Descartadas.Carolina.grafos.json.Tripleta;
 
 public class Grafo { //estructura principal del grafo
@@ -48,7 +50,7 @@ public class Grafo { //estructura principal del grafo
         Nodo s = obtenerNodo(sujeto); //obtiene o crea el nodo sujeto utilizando el metodo anterior
         Nodo o = obtenerNodo(objeto); //obtiene o crea el nodo objeto utilizando el metodo anterior
 
-        Arista a = new Arista(predicado, o); //crea la arista que conecta el nodo objeto
+        Descartadas.Carolina.grafos.componentes.Arista a = new Descartadas.Carolina.grafos.componentes.Arista(predicado, o); //crea la arista que conecta el nodo objeto
 
         s.aristas.addLast(a); //añade la arista al nodo sujeto para conseguir la estructura (sujeto,predicado,objeto) del nodo
 
@@ -80,6 +82,7 @@ public class Grafo { //estructura principal del grafo
             }
         }
     }
+
     private void imprimirNodoComoArbol(Nodo nodo, String prefijo) { //imprime un nodo y sus conexiones en forma de "árbol" para que sea más visual
 
         System.out.println(prefijo + nodo.nombre); //imprime el nodo actual con su prefijo

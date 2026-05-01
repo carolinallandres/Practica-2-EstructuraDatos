@@ -1,5 +1,6 @@
 package Descartadas.Carolina.arboles.arbol_recursivo.binario.arbol_busqueda;
 
+import Descartadas.Carolina.arboles.arbol_recursivo.binario.arbol_busqueda.ArbolBSTSinDuplicados;
 import Descartadas.Carolina.arboles.arbol_recursivo.binario.metodos_comunes.Altura;
 import Descartadas.Carolina.arboles.arbol_recursivo.binario.nodo.NodoBinario;
 
@@ -14,7 +15,9 @@ public class ArbolBalanceado<T extends Comparable<T>> extends ArbolBSTSinDuplica
 
     private NodoBinario<T> insertarAVL(NodoBinario<T> nodo, T data) { //inserción AVL
 
-        if (nodo == null) return new NodoBinario<>(data); //si no hay nodo, se crea uno nuevo
+        if (nodo == null) { //si no hay nodo, se crea uno nuevo
+            return new NodoBinario<>(data);
+        }
 
         int comparacion = data.compareTo(nodo.getData()); //compara el dato con el nodo actual
 
@@ -31,6 +34,7 @@ public class ArbolBalanceado<T extends Comparable<T>> extends ArbolBSTSinDuplica
         return equilibrarNodo(nodo); //al volver de la recursión se reequilibra el nodo
     }
 
+
     @Override
     public void eliminar(T data) { //elimina un nodo manteniendo el balance
         raiz = eliminarAVL(raiz, data); //llama al metodo recursivo desde la raíz
@@ -38,18 +42,26 @@ public class ArbolBalanceado<T extends Comparable<T>> extends ArbolBSTSinDuplica
 
     private NodoBinario<T> eliminarAVL(NodoBinario<T> nodo, T data) { //eliminación AVL
 
-        if (nodo == null) return null; //si no existe el nodo no hace nada
+        if (nodo == null) {  //si no existe el nodo no hace nada
+            return null;
+        }
 
         int comparacion = data.compareTo(nodo.getData()); //compara el dato con el nodo actual
 
         if (comparacion < 0) { //si es menor busca en la izquierda
             nodo.setLeft(eliminarAVL(nodo.getLeft(), data));
-        } else if (comparacion > 0) { //si es mayor busca en la derecha
+        }
+        else if (comparacion > 0) { //si es mayor busca en la derecha
             nodo.setRight(eliminarAVL(nodo.getRight(), data));
-        } else { //si encuentra el nodo a eliminar
+        }
+        else { //si encuentra el nodo a eliminar
 
-            if (nodo.getLeft() == null) return nodo.getRight(); //caso: sin hijo izquierdo
-            if (nodo.getRight() == null) return nodo.getLeft(); //caso: sin hijo derecho
+            if (nodo.getLeft() == null) { //caso: sin hijo izquierdo
+                return nodo.getRight();
+            }
+            if (nodo.getRight() == null) { //caso: sin hijo derecho
+                return nodo.getLeft();
+            }
 
             //caso: dos hijos
             NodoBinario<T> sucesor = obtenerMinimo(nodo.getRight()); //se busca el sucesor
@@ -62,10 +74,12 @@ public class ArbolBalanceado<T extends Comparable<T>> extends ArbolBSTSinDuplica
         return equilibrarNodo(nodo); //se reequilibra al volver de la recursión
     }
 
+
     @Override
     public NodoBinario<T> buscar(T data) { //busca un nodo en el árbol
         return buscarEnBST(raiz, data); //usa la búsqueda del BST base
     }
+
 
     private int calcularFactorBalance(NodoBinario<T> nodo) { //calcula el factor de balance del nodo
 
@@ -76,6 +90,7 @@ public class ArbolBalanceado<T extends Comparable<T>> extends ArbolBSTSinDuplica
 
         return izq - der; //factor de balance
     }
+
 
     private NodoBinario<T> equilibrarNodo(NodoBinario<T> nodo) { //equilibra el nodo si está descompensado
 

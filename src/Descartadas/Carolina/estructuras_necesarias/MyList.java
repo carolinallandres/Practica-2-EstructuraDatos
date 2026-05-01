@@ -1,5 +1,7 @@
 package Descartadas.Carolina.estructuras_necesarias;
 
+import Descartadas.Carolina.estructuras_necesarias.MyIterate;
+
 public interface MyList <T extends Comparable <T>> {
 
     void add(T data);

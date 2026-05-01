@@ -1,5 +1,9 @@
 package Descartadas.Carolina.arboles.arbol_recursivo.binario.arbol_busqueda;
 
+import Descartadas.Carolina.arboles.arbol_recursivo.binario.arbol_busqueda.ArbolBSTConDuplicados;
+import Descartadas.Carolina.arboles.arbol_recursivo.binario.arbol_busqueda.ArbolBSTSinDuplicados;
+import Descartadas.Carolina.arboles.arbol_recursivo.binario.arbol_busqueda.ArbolBalanceado;
+
 public class MainBTS {
 
     public static void main(String[] args) {
@@ -30,7 +34,7 @@ public class MainBTS {
         //árbol bts con duplicados
         System.out.println("\n----- BTS con duplicados -----");
 
-        ArbolBSTConDuplicados<Integer> bstConDup = new ArbolBSTConDuplicados<>();
+        Descartadas.Carolina.arboles.arbol_recursivo.binario.arbol_busqueda.ArbolBSTConDuplicados<Integer> bstConDup = new ArbolBSTConDuplicados<>();
 
         bstConDup.insertar(50);
         bstConDup.insertar(30);

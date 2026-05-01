@@ -1,10 +1,12 @@
 package Descartadas.Carolina.estructuras_necesarias;
 
+import Descartadas.Carolina.estructuras_necesarias.ElementSE;
+
 public class Queue<T> {
 
     //Atributos
-    private ElementSE<T> first; //primer nodo de la cola, desde donde se desencolan los elementos
-    private ElementSE<T> last;  //último nodo de la cola, donde se encolan los nuevos elementos
+    private Descartadas.Carolina.estructuras_necesarias.ElementSE<T> first; //primer nodo de la cola, desde donde se desencolan los elementos
+    private Descartadas.Carolina.estructuras_necesarias.ElementSE<T> last;  //último nodo de la cola, donde se encolan los nuevos elementos
 
 
     //Constructor
@@ -16,7 +18,7 @@ public class Queue<T> {
 
     //Métodos
     public void enqueue(T valor) { //metodo para encolar un elemento, equivalente a añadirlo al final de la cola
-        ElementSE<T> aux = new ElementSE<>(valor); //se crea un nuevo nodo con el valor recibido
+        Descartadas.Carolina.estructuras_necesarias.ElementSE<T> aux = new Descartadas.Carolina.estructuras_necesarias.ElementSE<>(valor); //se crea un nuevo nodo con el valor recibido
         if (first == null) { //si la cola está vacía
             first = aux; //el nuevo nodo pasa a ser el primero
             last = aux;  //y también el último

@@ -1,9 +1,12 @@
 package Descartadas.Carolina.estructuras_necesarias;
 
+import Descartadas.Carolina.estructuras_necesarias.ElementSE;
+import Descartadas.Carolina.estructuras_necesarias.MyIterate;
+
 public class ReiterateLSE <T> implements MyIterate<T> {
 
     //Atributos
-    private ElementSE<T> actual; //nodo actual que se está recorriendo en la lista simple
+    private Descartadas.Carolina.estructuras_necesarias.ElementSE<T> actual; //nodo actual que se está recorriendo en la lista simple
 
 
     //Constructor

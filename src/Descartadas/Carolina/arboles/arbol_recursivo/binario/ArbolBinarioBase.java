@@ -24,6 +24,7 @@ public abstract class ArbolBinarioBase<T extends Comparable<T>> implements Arbol
     @Override
     public boolean isEmpty() {return raiz == null;} //comprueba si el árbol está vacío
 
+
     @Override
     public int getAltura() {return altura(raiz);} //devuelve la altura del árbol
 
@@ -36,23 +37,30 @@ public abstract class ArbolBinarioBase<T extends Comparable<T>> implements Arbol
         return (izq > der ? izq : der) + 1; //máximo + 1
     }
 
+
     @Override
     public boolean isArbolHomogeneo() {return validador.esHomogeneo(raiz);} //árbol homogéneo
+
 
     @Override
     public boolean isArbolCompleto() {return validador.esCompleto(raiz);} //árbol completo
 
+
     @Override
     public boolean isArbolCasiCompleto() {return validador.esCasiCompleto(raiz);} //árbol casi completo
+
 
     @Override
     public MyList<T> getListaPreOrden() {return recorridos.preOrden(raiz);} //preorden
 
+
     @Override
     public MyList<T> getListaPostOrden() {return recorridos.postOrden(raiz);} //postorden
 
+
     @Override
     public MyList<T> getListaOrdenCentral() {return recorridos.inOrden(raiz);} //inorden
+
 
     @Override
     public String toString() {

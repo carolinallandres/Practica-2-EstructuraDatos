@@ -6,7 +6,9 @@ public class GraficadorBinario { //clase que se encarga de representar el árbol
 
     public <T extends Comparable<T>> String toGraficarString(NodoBinario<T> raiz) { //metodo principal que devuelve el árbol como string
 
-        if (raiz == null) return "(árbol vacío)"; //si no hay raíz no hay nada que mostrar
+        if (raiz == null) { //si no hay raíz no hay nada que mostrar
+            return "(árbol vacío)";
+        }
 
         return graficarRec(raiz, "", true); //empieza desde la raíz sin prefijo y como último nodo
     }
@@ -19,7 +21,8 @@ public class GraficadorBinario { //clase que se encarga de representar el árbol
 
         if (esUltimo) { //si el nodo es el último hijo
             resultado = resultado + "└── "; //se dibuja con este símbolo
-        } else { //si no es el último
+        }
+        else { //si no es el último
             resultado = resultado + "├── "; //se dibuja con este otro símbolo
         }
 
@@ -28,13 +31,16 @@ public class GraficadorBinario { //clase que se encarga de representar el árbol
         NodoBinario<T> left = nodo.getLeft(); //hijo izquierdo
         NodoBinario<T> right = nodo.getRight(); //hijo derecho
 
-        if (left == null && right == null) return resultado; //si es hoja no hay que seguir
+        if (left == null && right == null) { //si es hoja no hay que seguir
+            return resultado;
+        }
 
         String nuevoPrefijo; //prefijo que se pasará a los hijos
 
         if (esUltimo) { //si este nodo era el último
             nuevoPrefijo = prefijo + "    "; //no se dibuja línea vertical
-        } else {
+        }
+        else {
             nuevoPrefijo = prefijo + "│   "; //se mantiene la línea vertical
         }
 

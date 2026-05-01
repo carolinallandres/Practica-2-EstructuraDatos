@@ -1,9 +1,14 @@
 package Descartadas.Carolina.estructuras_necesarias;
 
+import Descartadas.Carolina.estructuras_necesarias.ElementSE;
+import Descartadas.Carolina.estructuras_necesarias.MyIterate;
+import Descartadas.Carolina.estructuras_necesarias.MyList;
+import Descartadas.Carolina.estructuras_necesarias.ReiterateLSE;
+
 public class ListSE<T extends Comparable<T>> implements MyList<T> {
 
     // Atributos: protegidos para permitir acceso desde clases del mismo paquete o heredadas
-    protected ElementSE<T> first; //puntero al primer nodo de la lista
+    protected Descartadas.Carolina.estructuras_necesarias.ElementSE<T> first; //puntero al primer nodo de la lista
     protected int size; //contador de elementos almacenados en la lista
 
 
@@ -16,7 +21,7 @@ public class ListSE<T extends Comparable<T>> implements MyList<T> {
 
     @Override
     public void add(T data) { //inserta un elemento al inicio de la lista (operación típica en listas simples)
-        ElementSE<T> nuevo = new ElementSE<>(data);
+        Descartadas.Carolina.estructuras_necesarias.ElementSE<T> nuevo = new Descartadas.Carolina.estructuras_necesarias.ElementSE<>(data);
         nuevo.setNext(first); //el nuevo nodo apunta al antiguo primero
         first = nuevo; //la cabeza pasa a ser el nuevo nodo
         size++; //se incrementa el tamaño
@@ -24,7 +29,7 @@ public class ListSE<T extends Comparable<T>> implements MyList<T> {
 
     @Override
     public T get(T data) { //busca un elemento por su valor recorriendo desde la cabeza
-        ElementSE<T> actual = first;
+        Descartadas.Carolina.estructuras_necesarias.ElementSE<T> actual = first;
         while (actual != null) { //recorrido secuencial
             if (actual.getData().compareTo(data) == 0) {
                 return actual.getData(); //si coincide, se devuelve
@@ -50,7 +55,7 @@ public class ListSE<T extends Comparable<T>> implements MyList<T> {
         }
 
         //caso 2: buscar el nodo anterior al que queremos eliminar
-        ElementSE<T> actual = first;
+        Descartadas.Carolina.estructuras_necesarias.ElementSE<T> actual = first;
         while (actual.getNext() != null &&
                 actual.getNext().getData().compareTo(data) != 0) {
             actual = actual.getNext(); //avanza nodo a nodo
@@ -73,12 +78,12 @@ public class ListSE<T extends Comparable<T>> implements MyList<T> {
 
     @Override
     public void addLast(T data) { //inserta un elemento al final de la lista
-        ElementSE<T> newNode = new ElementSE<>(data);
+        Descartadas.Carolina.estructuras_necesarias.ElementSE<T> newNode = new Descartadas.Carolina.estructuras_necesarias.ElementSE<>(data);
 
         if (isEmpty()) { //si está vacía, el nuevo nodo es la cabeza
             first = newNode;
         } else { //si no, se recorre hasta el último nodo
-            ElementSE<T> current = first;
+            Descartadas.Carolina.estructuras_necesarias.ElementSE<T> current = first;
             while (current.getNext() != null) {
                 current = current.getNext();
             }
@@ -108,7 +113,7 @@ public class ListSE<T extends Comparable<T>> implements MyList<T> {
         if (index < 0 || index >= size) {
             return null; //índice fuera de rango
         }
-        ElementSE<T> current = first;
+        Descartadas.Carolina.estructuras_necesarias.ElementSE<T> current = first;
         for (int i = 0; i < index; i++) {
             current = current.getNext(); //recorre nodo a nodo
         }
@@ -117,7 +122,7 @@ public class ListSE<T extends Comparable<T>> implements MyList<T> {
 
     @Override
     public int indexOf(T data) { //busca la posición de un elemento en la lista
-        ElementSE<T> current = first;
+        Descartadas.Carolina.estructuras_necesarias.ElementSE<T> current = first;
         int index = 0;
 
         while (current != null) {
@@ -132,7 +137,7 @@ public class ListSE<T extends Comparable<T>> implements MyList<T> {
 
     @Override
     public boolean contains(T data) { //comprueba si un elemento está en la lista
-        ElementSE<T> current = first;
+        Descartadas.Carolina.estructuras_necesarias.ElementSE<T> current = first;
         while (current != null) {
             if (current.getData().equals(data)) {
                 return true; //encontrado
@@ -147,14 +152,14 @@ public class ListSE<T extends Comparable<T>> implements MyList<T> {
     public void set(int index, T value) { //modifica el valor de un nodo en una posición concreta
         if (index < 0 || index >= size) return;
 
-        ElementSE<T> current = first;
+        Descartadas.Carolina.estructuras_necesarias.ElementSE<T> current = first;
         for (int i = 0; i < index; i++) {
             current = current.getNext();
         }
         current.setData(value);
     }
 
-    public ElementSE<T> getFirst() { //devuelve el primer nodo
+    public Descartadas.Carolina.estructuras_necesarias.ElementSE<T> getFirst() { //devuelve el primer nodo
         return first;
     }
 

@@ -1,5 +1,7 @@
 package Descartadas.Carolina.arboles.arbol_iterativo;
 
+import Descartadas.Carolina.arboles.arbol_iterativo.ArbolBusquedaBinariaEnteros;
+import Descartadas.Carolina.arboles.arbol_iterativo.NodoArbol;
 import Descartadas.Carolina.estructuras_necesarias.ListSE;
 
 public class MainIterativo {

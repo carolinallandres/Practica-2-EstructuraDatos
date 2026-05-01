@@ -1,5 +1,8 @@
 package Descartadas.Carolina.arboles.arbol_iterativo;
 
+import Descartadas.Carolina.arboles.arbol_iterativo.ArbolBusquedaBinaria;
+import Descartadas.Carolina.arboles.arbol_iterativo.NodoArbol;
+
 public class ArbolBusquedaBinariaEnteros extends ArbolBusquedaBinaria<Integer> { //árbol de enteros que hereda del árbol genérico
 
     //Constructores
@@ -13,7 +16,9 @@ public class ArbolBusquedaBinariaEnteros extends ArbolBusquedaBinaria<Integer> {
     }
 
     private int sumaTotal(NodoArbol<Integer> nodo) { //suma todos los valores del árbol
-        if (nodo == null) return 0; //si el nodo es nulo no aporta nada a la suma
+        if (nodo == null) { //si el nodo es nulo no aporta nada a la suma
+            return 0;
+        }
 
         int sumaIzq = sumaTotal(nodo.hijoIzquierdo); //suma el subarbol izquierdo
         int sumaDer = sumaTotal(nodo.hijoDerecho); //suma el subarbol derecho

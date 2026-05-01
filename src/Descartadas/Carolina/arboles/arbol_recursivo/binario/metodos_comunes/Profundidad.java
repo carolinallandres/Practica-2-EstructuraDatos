@@ -10,11 +10,15 @@ public class Profundidad<T extends Comparable<T>> { //clase para calcular la pro
 
     private int profundidadRec(NodoBinario<T> nodo, T data, int nivel) { //recursión de búsqueda
 
-        if (nodo == null) return -1; //si no existe el nodo
+        if (nodo == null) { //si no existe el nodo
+            return -1;
+        }
 
         int cmp = data.compareTo(nodo.getData()); //comparación con el nodo actual
 
-        if (cmp == 0) return nivel; //si se encuentra, devuelve nivel
+        if (cmp == 0) { //si se encuentra, devuelve nivel
+            return nivel;
+        }
 
         if (cmp < 0) { //si es menor, va izquierda
             return profundidadRec(nodo.getLeft(), data, nivel + 1);

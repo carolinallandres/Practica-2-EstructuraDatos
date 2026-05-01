@@ -76,7 +76,9 @@ public class CaminoMinimo { //calcula un camino mínimo usando la búsqueda en a
 
         for (int i = 0; i < visitados.getSize(); i++) { //recorre la lista de nodos visitados
 
-            if (visitados.get(i).nombre.equals(n.nombre)) return true; //si coincide el nombre del nodo, ya ha sido visitado
+            if (visitados.get(i).nombre.equals(n.nombre)) { //si coincide el nombre del nodo, ya ha sido visitado
+                return true;
+            }
         }
 
         return false; //si no se encuentra entonces no está visitado
@@ -108,7 +110,9 @@ public class CaminoMinimo { //calcula un camino mínimo usando la búsqueda en a
             caminoReves.addLast(actual); //se añade el nodo actual a la lista del camino al revés
 
             int index = indiceDeNodo(actual); //busca el índice del nodo
-            if (index == -1) break; //si no está en la lista finaliza
+            if (index == -1) { //si no está en la lista finaliza
+                break;
+            }
 
             actual = padres.get(index); //accede del nodo en el que se encuentra al nodo padre
         }
@@ -119,6 +123,7 @@ public class CaminoMinimo { //calcula un camino mínimo usando la búsqueda en a
 
         return camino; //devuelve el camino de la forma correcta
     }
+
     private int indiceDeNodo(Nodo n) { //devuelve el índice de un nodo que ha sido visitado
 
         for (int i = 0; i < visitados.getSize(); i++) { //recorre la lista de nodos visitados

@@ -1,7 +1,9 @@
 package Descartadas.Carolina.grafos.json;
 
 import Descartadas.Carolina.estructuras_necesarias.ListSE;
+import Descartadas.Carolina.grafos.json.Tripleta;
 import com.google.gson.Gson;
+
 import java.io.FileReader;
 
 public class ArchivosJson {

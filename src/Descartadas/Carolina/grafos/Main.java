@@ -3,11 +3,11 @@ package Descartadas.Carolina.grafos;
 import Descartadas.Carolina.estructuras_necesarias.ListSE;
 import Descartadas.Carolina.grafos.componentes.Grafo;
 import Descartadas.Carolina.grafos.componentes.Nodo;
+import Descartadas.Carolina.grafos.json.ArchivosJson;
+import Descartadas.Carolina.grafos.json.Tripleta;
 import Descartadas.Carolina.grafos.metodos.CaminoMinimo;
 import Descartadas.Carolina.grafos.metodos.ConsultasNobel;
 import Descartadas.Carolina.grafos.metodos.GrafoDisjunto;
-import Descartadas.Carolina.grafos.json.ArchivosJson;
-import Descartadas.Carolina.grafos.json.Tripleta;
 
 public class Main { //main del programa de grafos
 

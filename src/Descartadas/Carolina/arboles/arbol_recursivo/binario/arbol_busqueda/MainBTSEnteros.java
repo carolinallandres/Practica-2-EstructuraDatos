@@ -1,5 +1,8 @@
 package Descartadas.Carolina.arboles.arbol_recursivo.binario.arbol_busqueda;
 
+import Descartadas.Carolina.arboles.arbol_recursivo.binario.arbol_busqueda.ArbolBalanceadoEnteros;
+import Descartadas.Carolina.arboles.arbol_recursivo.binario.arbol_busqueda.ArbolBinarioDeBusquedaEnteros;
+
 public class MainBTSEnteros {
 
     public static void main(String[] args) {
@@ -7,7 +10,7 @@ public class MainBTSEnteros {
         //árbol bts de números enteros
         System.out.println("----- BTS de enteros -----");
 
-        ArbolBinarioDeBusquedaEnteros bst = new ArbolBinarioDeBusquedaEnteros();
+        Descartadas.Carolina.arboles.arbol_recursivo.binario.arbol_busqueda.ArbolBinarioDeBusquedaEnteros bst = new ArbolBinarioDeBusquedaEnteros();
 
         bst.insertar(10);
         bst.insertar(5);
@@ -24,7 +27,7 @@ public class MainBTSEnteros {
         //árbol balanceado, siempre bts
         System.out.println("\n----- AVL de enteros -----");
 
-        ArbolBalanceadoEnteros avl = new ArbolBalanceadoEnteros();
+        Descartadas.Carolina.arboles.arbol_recursivo.binario.arbol_busqueda.ArbolBalanceadoEnteros avl = new ArbolBalanceadoEnteros();
 
         avl.insertar(10);
         avl.insertar(5);

@@ -1,5 +1,7 @@
 package Descartadas.Carolina.estructuras_necesarias;
 
+import Descartadas.Carolina.estructuras_necesarias.ElementSE;
+
 public class Stack <T> {
 
     private ElementSE<T> top; //nodo que representa la cima de la pila, desde donde se apilan y desapilan los elementos

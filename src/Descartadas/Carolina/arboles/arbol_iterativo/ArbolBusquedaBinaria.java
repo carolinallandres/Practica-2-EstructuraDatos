@@ -1,5 +1,6 @@
 package Descartadas.Carolina.arboles.arbol_iterativo;
 
+import Descartadas.Carolina.arboles.arbol_iterativo.NodoArbol;
 import Descartadas.Carolina.estructuras_necesarias.ListSE;
 import Descartadas.Carolina.estructuras_necesarias.Queue;
 import Descartadas.Carolina.estructuras_necesarias.Stack;
@@ -19,7 +20,9 @@ public class ArbolBusquedaBinaria<T extends Comparable<T>> {
     //Métodos
     //Para poder añadir un elemento al árbol
     public void add(T dato) {
+
         NodoArbol<T> nuevo = new NodoArbol<>(dato); //crea un nodo auxiliar para añadir al árbol
+
         if (raiz == null) { //si no hay raíz entonces el nodo se añade al comienzo
             raiz = nuevo;
             return;
@@ -29,7 +32,9 @@ public class ArbolBusquedaBinaria<T extends Comparable<T>> {
         NodoArbol<T> padre = null;
 
         while (actual != null) { //mientras que el nodo actual no sea nulo se actualiza el nodo a nodo padre para no perder la referencia
+
             padre = actual;
+
             int comparacion = dato.compareTo(actual.dato); //comparo el dato que quiero insertar con el dato del nodo en el que estoy
 
             if (comparacion < 0) { //si el dato a insertar es menor que el dato en el nodo actual, va a pertener al subarbol izquierdo
@@ -101,7 +106,8 @@ public class ArbolBusquedaBinaria<T extends Comparable<T>> {
 
         if (gradoIzquierdo > gradoDerecho) { //establece cuál es el subarbol de mayor grado
             gradoMayorSub = gradoIzquierdo;
-        } else {
+        }
+        else {
             gradoMayorSub = gradoDerecho;
         }
 
@@ -109,7 +115,8 @@ public class ArbolBusquedaBinaria<T extends Comparable<T>> {
 
         if (cantidadHijos > gradoMayorSub) { //establece el grado final
             gradoFinal = cantidadHijos;
-        } else {
+        }
+        else {
             gradoFinal = gradoMayorSub;
         }
         return gradoFinal;
@@ -118,6 +125,7 @@ public class ArbolBusquedaBinaria<T extends Comparable<T>> {
 
     //Para ordenarlo de manera que la lista sea Nodo->Izq->Der usamos una pila que funciona de manera LIFO
     public ListSE<T> getListaPreOrden() {
+
         ListSE<T> lista = new ListSE<>(); //crea una lista donde se almacena el resultado
         Stack<NodoArbol<T>> pila = new Stack<>(); //crea una pila auxiliar
 
@@ -126,6 +134,7 @@ public class ArbolBusquedaBinaria<T extends Comparable<T>> {
         }
 
         while (!pila.isEmpty()) { //si la pila no está vacía
+
             NodoArbol<T> nodo = pila.pop(); //se selecciona el nodo que está en la cima de la pila
             lista.addLast(nodo.dato); //se añade el nodo a la lista
 
@@ -143,6 +152,7 @@ public class ArbolBusquedaBinaria<T extends Comparable<T>> {
 
     //Para ordenarlo de manera que la lista sea Izq->Nodo->Der usamos una pila que funciona de manera LIFO
     public ListSE<T> getListaOrdenCentral() {
+
         ListSE<T> lista = new ListSE<>(); //crea una lista donde se almacena el resultado
         Stack<NodoArbol<T>> pila = new Stack<>(); //crea una pila auxiliar
 
@@ -167,6 +177,7 @@ public class ArbolBusquedaBinaria<T extends Comparable<T>> {
 
     //Para ordenarlo de manera que la lista sea Izq->Der->Nodo usamos una pila que funciona de manera LIFO
     public ListSE<T> getListaPostOrden() {
+
         ListSE<T> lista = new ListSE<>(); //crea una lista donde se almacena el resultado
         Stack<NodoArbol<T>> pila = new Stack<>(); //crea una pila auxiliar
 
@@ -184,17 +195,20 @@ public class ArbolBusquedaBinaria<T extends Comparable<T>> {
 
             if (tope.hijoDerecho != null && ultimoVisitado != tope.hijoDerecho) { //si el subarbol derecho existe y no es el último visitado se recorre
                 actual = tope.hijoDerecho;
-            } else { //si no hay subarbol derecho o ya se ha procesado se pasa al nodo
+            }
+            else { //si no hay subarbol derecho o ya se ha procesado se pasa al nodo
                 lista.addLast(tope.dato);
                 ultimoVisitado = pila.pop(); //se actualiza para saber que el nodo ya ha sido visitado junto con sus hijos
             }
         }
+
         return lista;
     }
 
 
     //Para obtener una lista con el camino que tenemos que recorrer
     public ListSE<T> getCamino(T dato) {
+
         ListSE<T> camino = new ListSE<>(); //crea una lista donde se almacena el resultado
         NodoArbol<T> actual = raiz; //inicializa el puntero actual en la raíz del árbol
 
@@ -222,6 +236,7 @@ public class ArbolBusquedaBinaria<T extends Comparable<T>> {
 
     //Para devolver una lista con los nodos que están en el nivel que se pasa por parámetro
     public ListSE<T> getListaDatosNivel(int nivelBuscado) {
+
         ListSE<T> lista = new ListSE<>(); //crea una lista donde se guarda el resultado
 
         if (raiz == null){ //si el árbol está vacío no hay nada que recorrer
@@ -236,12 +251,15 @@ public class ArbolBusquedaBinaria<T extends Comparable<T>> {
 
             if (actual.nivel == nivelBuscado) { //si el nivel coincide con el que buscamos
                 lista.addLast(actual.nodo.dato); //añadimos el dato a la lista
-            } else if (actual.nivel < nivelBuscado) { //si todavía no hemos llegado al nivel buscado metemos primero el derecho para que el izquierdo salga antes de la pila
-                if (actual.nodo.hijoDerecho != null)
-                    pila.push(new NodoNivel<>(actual.nodo.hijoDerecho, actual.nivel + 1)); //bajamos un nivel al hijo derecho
+            }
+            else if (actual.nivel < nivelBuscado) { //si todavía no hemos llegado al nivel buscado metemos primero el derecho para que el izquierdo salga antes de la pila
+                if (actual.nodo.hijoDerecho != null) { //bajamos un nivel al hijo derecho
+                    pila.push(new NodoNivel<>(actual.nodo.hijoDerecho, actual.nivel + 1));
+                }
 
-                if (actual.nodo.hijoIzquierdo != null)
-                    pila.push(new NodoNivel<>(actual.nodo.hijoIzquierdo, actual.nivel + 1)); //bajamos un nivel al hijo izquierdo
+                if (actual.nodo.hijoIzquierdo != null) { //bajamos un nivel al hijo izquierdo
+                    pila.push(new NodoNivel<>(actual.nodo.hijoIzquierdo, actual.nivel + 1));
+                }
             }
         }
 
@@ -249,6 +267,7 @@ public class ArbolBusquedaBinaria<T extends Comparable<T>> {
     }
 
     private static class NodoNivel<T> { //estructura auxiliar para poder guardar un nodo junto con su nivel
+
         NodoArbol<T> nodo; //nodo del árbol
         int nivel; //nivel en el que está ese nodo
 
@@ -261,6 +280,7 @@ public class ArbolBusquedaBinaria<T extends Comparable<T>> {
 
     //Para comprobar si todos los nodos tienen el mismo número de hijos
     public boolean isArbolHomogeneoIterativo() {
+
         if (raiz == null) return true; //si el árbol está vacío se considera homogéneo
 
         int hijosEsperados = contarHijos(raiz); //guardamos el número de hijos que tiene la raíz como referencia
@@ -269,12 +289,12 @@ public class ArbolBusquedaBinaria<T extends Comparable<T>> {
         pila.push(raiz); //empezamos desde la raíz
 
         while (!pila.isEmpty()) { //mientras haya nodos por revisar
+
             NodoArbol<T> actual = pila.pop(); //sacamos el nodo actual
 
             int hijosNodo = contarHijos(actual); //contamos los hijos del nodo actual
 
-            //si el nodo no es hoja y tiene distinto número de hijos que la raíz, ya no es homogéneo
-            if (hijosNodo != 0 && hijosNodo != hijosEsperados) {
+            if (hijosNodo != 0 && hijosNodo != hijosEsperados) { //si el nodo no es hoja y tiene distinto número de hijos que la raíz, ya no es homogéneo
                 return false;
             }
 
@@ -293,6 +313,7 @@ public class ArbolBusquedaBinaria<T extends Comparable<T>> {
 
         return hijos; //devolvemos el total
     }
+
 
     private boolean comprobarHomogeneoRec(NodoArbol<T> nodo, int hijosEsperados) { //versión recursiva de la comprobación de homogeneidad
         if (nodo == null) return true; //si el nodo es nulo no afecta

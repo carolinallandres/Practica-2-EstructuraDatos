@@ -1,6 +1,9 @@
 package Descartadas.Carolina.grafos.componentes;
 
 import Descartadas.Carolina.estructuras_necesarias.ListSE;
+import Descartadas.Carolina.grafos.componentes.Arista;
+import Descartadas.Carolina.grafos.componentes.Grafo;
+import Descartadas.Carolina.grafos.componentes.Nodo;
 import Descartadas.Carolina.grafos.json.ArchivosJson;
 import Descartadas.Carolina.grafos.json.Tripleta;
 
@@ -14,7 +17,7 @@ public class MainGrafo { //main de prueba del grafo básico
 
 
         //construir grafo
-        Grafo g = new Grafo();
+        Descartadas.Carolina.grafos.componentes.Grafo g = new Grafo();
         g.cargarDesdeTripletas(datos);
 
 

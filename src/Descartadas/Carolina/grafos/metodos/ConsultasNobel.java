@@ -23,7 +23,9 @@ public class ConsultasNobel { //ejercicios sobre personas con premio nobel en el
         Nodo fisico = grafo.buscarNodo("persona:Albert Einstein"); //busca el nodo (en este caso Einstein)
         ListSE<String> resultado = new ListSE<>(); //lista que va a contener el resto de nobeles de la misma ciudad
 
-        if (fisico == null) return resultado; //si no existe el nodo no se puede hacer nada
+        if (fisico == null) { //si no existe el nodo no se puede hacer nada
+            return resultado;
+        }
 
         String ciudadFisico = null; //guardará la ciudad de nacimiento del nodo que se quiere comparar (en este caso Einstein)
 
@@ -81,7 +83,7 @@ public class ConsultasNobel { //ejercicios sobre personas con premio nobel en el
 
             Nodo n = grafo.nodos.get(i); //indica el nodo actual
 
-            if (!n.nombre.startsWith("persona:")){ //asegura que solo se seleccionen nodos de personas
+            if (!n.nombre.startsWith("persona:")) { //asegura que solo se seleccionen nodos de personas
                 continue;
             }
 
@@ -95,7 +97,6 @@ public class ConsultasNobel { //ejercicios sobre personas con premio nobel en el
                 if (a.etiqueta.equals("premio:Nobel")) { //marca si tiene premio nobel
                     esNobel = true;
                 }
-
                 if (a.etiqueta.equals("nace_en")) { //guarda la ciudad de nacimiento
                     ciudad = a.destino.nombre;
                 }

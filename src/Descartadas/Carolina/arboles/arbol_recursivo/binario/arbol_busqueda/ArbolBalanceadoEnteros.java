@@ -1,5 +1,6 @@
 package Descartadas.Carolina.arboles.arbol_recursivo.binario.arbol_busqueda;
 
+import Descartadas.Carolina.arboles.arbol_recursivo.binario.arbol_busqueda.ArbolBalanceado;
 import Descartadas.Carolina.arboles.arbol_recursivo.binario.nodo.NodoBinario;
 
 public class ArbolBalanceadoEnteros extends ArbolBalanceado<Integer> { //árbol balanceado especializado en enteros
@@ -10,7 +11,9 @@ public class ArbolBalanceadoEnteros extends ArbolBalanceado<Integer> { //árbol 
 
     private int sumarRec(NodoBinario<Integer> nodo) { //recorrido recursivo del árbol
 
-        if (nodo == null) return 0; //caso base: si no hay nodo, suma 0
+        if (nodo == null) {  //caso base: si no hay nodo, suma 0
+            return 0;
+        }
 
         return nodo.getData() //valor del nodo actual
                 + sumarRec(nodo.getLeft()) //suma del subárbol izquierdo

@@ -36,7 +36,6 @@ public class GrafoDisjunto { //clase para contar componentes conexas del grafo
         return componentes; //devuelve el número total de componentes
     }
 
-
     private void recorrerNodo(Nodo inicio, ListSE<Nodo> visitados) { // recorre un componente con bfs
 
         Queue<Nodo> cola = new Queue<>(); //cola para recorrer en anchura
@@ -59,12 +58,13 @@ public class GrafoDisjunto { //clase para contar componentes conexas del grafo
         }
     }
 
-
     private boolean contiene(ListSE<Nodo> lista, Nodo n) { //comprueba si un nodo está en la lista
 
         for (int i = 0; i < lista.getSize(); i++) { //recorre la lista
 
-            if (lista.get(i) == n) return true; //si es el mismo nodo lo encuentra
+            if (lista.get(i) == n) { //si es el mismo nodo lo encuentra
+                return true;
+            }
         }
 
         return false; // si no está

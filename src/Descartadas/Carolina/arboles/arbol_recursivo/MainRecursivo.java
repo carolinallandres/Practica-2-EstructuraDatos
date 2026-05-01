@@ -10,92 +10,94 @@ public class MainRecursivo {
 
     public static void main(String[] args) {
 
-        ArbolBinarioDeBusquedaEnteros arbolInsercionOrdenada = new ArbolBinarioDeBusquedaEnteros();
+        ArbolBinarioDeBusquedaEnteros arbolOrdenado =
+                new ArbolBinarioDeBusquedaEnteros();
 
         for (int i = 0; i <= 128; i++) {
-            arbolInsercionOrdenada.insertar(i);
+            arbolOrdenado.insertar(i);
         }
 
         System.out.println("Caso 1: inserción ordenada");
-        probarArbol(arbolInsercionOrdenada);
+        probarArbol(arbolOrdenado);
 
-        ArbolBinarioDeBusquedaEnteros arbolInsercionAleatoria = new ArbolBinarioDeBusquedaEnteros();
+        ArbolBinarioDeBusquedaEnteros arbolAleatorio =
+                new ArbolBinarioDeBusquedaEnteros();
 
-        int[] numeros = new int[129];
-        for (int i = 0; i <= 128; i++) numeros[i] = i;
+        int[] nums = new int[129];
+        for (int i = 0; i <= 128; i++) nums[i] = i;
 
-        mezclarArray(numeros);
+        mezclar(nums);
 
-        for (int n : numeros) {
-            arbolInsercionAleatoria.insertar(n);
+        for (int n : nums) {
+            arbolAleatorio.insertar(n);
         }
 
         System.out.println("\nCaso 2: inserción aleatoria");
-        probarArbol(arbolInsercionAleatoria);
+        probarArbol(arbolAleatorio);
     }
 
     private static void probarArbol(ArbolBinarioDeBusquedaEnteros arbol) {
 
-        int sumaTotal = arbol.calcularSumaElementos();
-        System.out.println("Suma total: " + sumaTotal);
-
-        MyList<Integer> preorden = arbol.getListaPreOrden();
-        MyList<Integer> inorden = arbol.getListaOrdenCentral();
-        MyList<Integer> postorden = arbol.getListaPostOrden();
-
-        System.out.println("Suma preorden: " + sumarLista(preorden));
-        System.out.println("Suma inorden: " + sumarLista(inorden));
-        System.out.println("Suma postorden: " + sumarLista(postorden));
-
+        System.out.println("Suma total: " + arbol.calcularSumaElementos());
+        System.out.println("Suma preorden: " + sumar(arbol.getListaPreOrden()));
+        System.out.println("Suma inorden: " + sumar(arbol.getListaOrdenCentral()));
+        System.out.println("Suma postorden: " + sumar(arbol.getListaPostOrden()));
         System.out.println("Altura: " + arbol.getAltura());
 
-        MyList<Integer> camino110 = arbol.getCamino(110);
+        MyList<Integer> camino = arbol.getCamino(110);
 
-        System.out.print("Camino hasta 110: ");
-        imprimirLista(camino110);
+        System.out.print("Camino desde el 110: ");
+        imprimir(camino);
 
-        System.out.println("Longitud del camino: " + (camino110.getSize() - 1));
+        System.out.println("Longitud del camino: " + (camino.getSize() - 1));
     }
 
-    private static int sumarLista(MyList<Integer> lista) {
+    private static int sumar(MyList<Integer> lista) {
 
-        MyIterate<Integer> iterador = lista.getIterate();
+        if (lista == null) return 0;
+
+        MyIterate<Integer> it = lista.getIterate();
         int suma = 0;
 
-        while (iterador.hasNext()) {
-            suma += iterador.next();
+        while (it.hasNext()) {
+            suma += it.next();
         }
 
         return suma;
     }
 
-    private static void imprimirLista(MyList<Integer> lista) {
+    private static void imprimir(MyList<Integer> lista) {
 
-        MyIterate<Integer> iterador = lista.getIterate();
-        boolean primero = true;
+        if (lista == null) {
+            System.out.println("lista null");
+            return;
+        }
 
-        while (iterador.hasNext()) {
+        MyIterate<Integer> it = lista.getIterate();
+        boolean first = true;
 
-            if (!primero) System.out.print(" -> ");
+        while (it.hasNext()) {
 
-            System.out.print(iterador.next());
-            primero = false;
+            if (!first) System.out.print(" -> ");
+
+            System.out.print(it.next());
+            first = false;
         }
 
         System.out.println();
     }
 
-    private static void mezclarArray(int[] arr) {
+    private static void mezclar(int[] arr) {
 
-        Random random = new Random();
+        Random r = new Random();
 
         for (int i = arr.length - 1; i > 0; i--) {
 
-            int j = random.nextInt(i + 1);
+            int j = r.nextInt(i + 1);
 
-            int temp = arr[i];
+            int tmp = arr[i];
             arr[i] = arr[j];
-            arr[j] = temp;
+            arr[j] = tmp;
         }
     }
 }
